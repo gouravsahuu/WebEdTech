@@ -4,12 +4,16 @@ from .models import Department, Enrollment, Course, Instructor, Student, Assignm
 from .serializers import (
     DepartmentSerializer, EnrollmentSerializer, CourseSerializer,
     InstructorSerializer, StudentSerializer, AssignmentSerializer,
-    SubmissionSerializer, AnnouncementSerializer
+    SubmissionSerializer, AnnouncementSerializer, InstructorRegistrationSerializer, InstructorLoginSerializer
 )
 from django.http import JsonResponse
 from .models import Instructor
-from .forms import InstructorRegistrationForm 
 from rest_framework.authtoken.models import Token
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 class InstructorListCreateView(generics.ListCreateAPIView):
     queryset = Instructor.objects.all()
@@ -19,37 +23,24 @@ class InstructorRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView)
     queryset = Instructor.objects.all()
     serializer_class = InstructorSerializer
 
+@api_view(['POST'])
 def instructor_register(request):
     if request.method == 'POST':
-        form = InstructorRegistrationForm(request.POST)
-        if form.is_valid():
-            # Check if the email is unique
-            email = form.cleaned_data['email']
+        serializer = InstructorRegistrationSerializer(data=request.data)
+        if serializer.is_valid():
+            email = serializer.validated_data['email']
+            # Check if an instructor with the same email already exists
             if Instructor.objects.filter(email=email).exists():
-                return JsonResponse({'error': 'Email is already registered.'})
-            
-            # Save the new user
-            instructor = form.save()
-            return JsonResponse({'message': 'Register Success'})
-        else:
-            return JsonResponse({'error': 'Invalid data submitted.'})
+                return Response({'message': 'Email already exists.'}, status=status.HTTP_400_BAD_REQUEST)
+            serializer.save()
+            return Response({'message': 'Registration Success'}, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    return JsonResponse({'error': 'Invalid request method.'})
-
-def instructor_login(request):
-    if request.method == 'POST':
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-
-        try:
-            instructor = Instructor.objects.get(email=email)
-        except Instructor.DoesNotExist:
-            return JsonResponse({'error': 'User not found.'})
-
-        if instructor.check_password(password):
-            token, created = Token.objects.get_or_create(user=instructor)
-            return JsonResponse({'message': 'Login Success', 'token': token.key})
-        else:
-            return JsonResponse({'error': 'Invalid password.'})
-
-    return JsonResponse({'error': 'Invalid request method.'})
+class InstructorLoginView(APIView):
+    def post(self, request):
+        serializer = InstructorLoginSerializer(data=request.data)
+        if serializer.is_valid():
+            instructor = serializer.validated_data['instructor']
+            # token, _ = Token.objects.get_or_create(instructor=instructor)
+            return Response({'message': 'Login successful'}, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
