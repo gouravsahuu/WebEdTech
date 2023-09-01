@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework.authtoken'
+    'main'
 ]
 
 MIDDLEWARE = [
@@ -75,8 +78,12 @@ WSGI_APPLICATION = 'webedtech.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'webedtech',   # Replace with your preferred database name
+        'USER': 'root',   # Replace with your MySQL username
+        'PASSWORD': '797479@mySQLPass',  # Replace with your MySQL password
+        'HOST': 'localhost',  # Use 'localhost' or the MySQL server host
+        'PORT': '3306',       # MySQL default port
     }
 }
 
