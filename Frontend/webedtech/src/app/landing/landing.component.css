@@ -1,0 +1,12 @@
+nav {
+    background-color: #3498db;
+  }
+  
+  nav a {
+    color: white;
+  }
+  
+  nav a:hover {
+    text-decoration: underline;
+  }
+  
