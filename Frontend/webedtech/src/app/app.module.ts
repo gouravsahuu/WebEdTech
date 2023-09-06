@@ -7,6 +7,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { LandingComponent } from './landing/landing.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { StudentDashboardComponent } from './student-dashboard/student-dashboard.component';
+import { InstructorDashboardComponent } from './instructor-dashboard/instructor-dashboard.component';
 
 
 @NgModule({
@@ -14,7 +16,9 @@ import { RegisterComponent } from './register/register.component';
     AppComponent,
     LandingComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    StudentDashboardComponent,
+    InstructorDashboardComponent
   ],
   imports: [
     BrowserModule,
