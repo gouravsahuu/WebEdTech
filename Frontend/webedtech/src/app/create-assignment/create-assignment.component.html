@@ -1,0 +1,51 @@
+<nav class="bg-blue-500 p-4">
+  <div class="container mx-auto flex justify-between items-center">
+    <h1 (click)="homeClick()" class="text-white text-2xl font-semibold">WebEdTech</h1>
+    <ul class="flex space-x-4">
+      <li><a routerLink="/instructorDashboard" class="text-white hover:underline">Instructor Dashboard</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="container mx-auto mt-8">
+  <h2 class="text-2xl font-semibold">Create Assignment</h2>
+  <form (submit)="createAssignment()" class="max-w-md mx-auto mt-4">
+    <div class="mb-4">
+      <label for="title" class="block text-sm font-semibold text-gray-700">Title:</label>
+      <input type="text" id="title" name="title" [(ngModel)]="assignment.title" required
+        class="border rounded w-full py-2 px-3 text-gray-700 mt-1 focus:outline-none focus:ring focus:border-blue-500">
+    </div>
+    <div class="mb-4">
+      <label for="description" class="block text-sm font-semibold text-gray-700">Description:</label>
+      <textarea id="description" name="description" [(ngModel)]="assignment.description" required
+        class="border rounded w-full py-2 px-3 text-gray-700 mt-1 focus:outline-none focus:ring focus:border-blue-500"></textarea>
+    </div>
+    <div class="mb-4">
+      <label for="deadline" class="block text-sm font-semibold text-gray-700">Deadline:</label>
+      <input type="datetime-local" id="deadline" name="deadline" [(ngModel)]="assignment.deadline" required
+        class="border rounded w-full py-2 px-3 text-gray-700 mt-1 focus:outline-none focus:ring focus:border-blue-500">
+    </div>
+    <div class="mb-4">
+      <label for="category" class="block text-sm font-semibold text-gray-700">Category:</label>
+      <select id="category" name="category" [(ngModel)]="assignment.category" required
+        class="border rounded w-full py-2 px-3 text-gray-700 mt-1 focus:outline-none focus:ring focus:border-blue-500">
+        <option value="">Select Category</option>
+        <option value="Coding">Coding</option>
+        <option value="DSA">DSA</option>
+      </select>
+    </div>
+    <input type="hidden" name="status" [(ngModel)]="assignment.status" value="pending">
+    <div class="mb-4">
+      <label for="difficulty" class="block text-sm font-semibold text-gray-700">Difficulty:</label>
+      <select id="difficulty" name="difficulty" [(ngModel)]="assignment.difficulty" required
+        class="border rounded w-full py-2 px-3 text-gray-700 mt-1 focus:outline-none focus:ring focus:border-blue-500">
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+    </div>
+    <button type="submit"
+      class="bg-blue-500 text-white rounded px-4 py-2 hover:bg-blue-600 transition duration-300 ease-in-out">Create
+      Assignment</button>
+  </form>
+</div>
+  

@@ -1,0 +1,39 @@
+<nav class="bg-blue-500 p-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 (click)="homeClick()" class="text-white text-2xl font-semibold">WebEdTech</h1>
+      <ul class="flex space-x-4">
+        <li><a routerLink="/instructorDashboard" class="text-white hover:underline">Instructor Dashboard</a></li>
+      </ul>
+    </div>
+</nav>
+
+<div class="container mx-auto mt-8">
+    <h2 class="text-2xl font-semibold">Edit Profile</h2>
+    <form (submit)="updateProfile()" class="mt-4 space-y-4 max-w-md mx-auto bg-white rounded-lg shadow-md p-6">
+      <div class="mb-4">
+        <label for="name" class="block font-semibold">Name:</label>
+        <input type="text" id="name" name="name" [(ngModel)]="instructor.name" required>
+      </div>
+      <div class="mb-4">
+        <label for="email" class="block font-semibold">Email:</label>
+        <input type="email" id="email" name="email" [(ngModel)]="instructor.email" required>
+      </div>
+      <div class="mb-4">
+        <label for="gender" class="block font-semibold">Gender:</label>
+        <select id="gender" name="gender" [(ngModel)]="instructor.gender" required>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+      <div class="mb-4">
+        <label for="contact_number" class="block font-semibold">Contact Number:</label>
+        <input type="text" id="contact_number" name="contact_number" [(ngModel)]="instructor.contact_number" required>
+      </div>
+      <div class="mb-4">
+        <label for="profile_picture" class="block font-semibold">Profile Picture URL:</label>
+        <input type="text" id="profile_picture" name="profile_picture" [(ngModel)]="instructor.profile_picture" required>
+      </div>
+      <button type="submit" class="bg-blue-500 text-white rounded px-4 py-2">Update Profile</button>
+    </form>
+  </div>
+  

@@ -10,4 +10,6 @@ urlpatterns = [
     path('assignments/<int:assignment_id>/', views.AssignmentDetailView.as_view(), name='assignment-detail'),
     path('assignments/<int:assignment_id>/submissions/', views.SubmissionCreateView.as_view(), name='submission-create'),
     path('submissions/<int:submission_id>/', views.SubmissionDetailView.as_view(), name='submission-detail'),
+    path('students/login/', views.student_login, name="student_login"),
+    path('instructors/login/', views.instructor_login, name="instructor_login")
 ]

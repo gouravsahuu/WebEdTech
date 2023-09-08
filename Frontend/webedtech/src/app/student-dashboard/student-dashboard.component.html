@@ -1,11 +1,43 @@
+<nav class="bg-blue-500 p-4">
+  <div class="container mx-auto flex justify-between items-center">
+    <h1 (click)="homeClick()" class="text-white text-2xl font-semibold">WebEdTech</h1>
+    <ul class="flex space-x-4">
+      <li><a routerLink="/" class="text-white hover:underline">Logout</a></li>
+    </ul>
+  </div>
+</nav>
 <div class="container mx-auto mt-8">
   <h2 class="text-2xl font-semibold">Student Dashboard</h2>
-  <p>Welcome, {{ studentName }} (Student ID: {{ studentId }})</p>
+  <div id="info">
+    <p>Welcome, {{ studentName }} (Student ID: {{ studentId }})</p>
+    <h3 class="btn" (click)="editProfile(studentId)">Edit Profile</h3>
+  </div>
   <h3 class="text-xl mt-4">Assignments:</h3>
-  <ul>
-    <li *ngFor="let assignment of assignments">
-      {{ assignment.title }} (Deadline: {{ assignment.deadline }})<br>
-      Status: {{ assignment.status }} | Difficulty: {{ assignment.difficulty }}
-    </li>
-  </ul>
+  <table class="table-auto mt-4">
+    <thead>
+      <tr>
+        <th class="px-4 py-2">ID</th>
+        <th class="px-4 py-2">Title</th>
+        <th class="px-4 py-2">Deadline</th>
+        <th class="px-4 py-2">Difficulty</th>
+        <th class="px-4 py-2">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let assignment of assignments">
+        <td class="border px-4 py-2">{{ assignment.assignment_id }}</td>
+        <td class="border px-4 py-2">{{ assignment.title }}</td>
+        <td class="border px-4 py-2">{{ assignment.deadline }}</td>
+        <td class="border px-4 py-2" [ngClass]="{ 'text-green-500': assignment.difficulty === 'easy', 'text-orange-500': assignment.difficulty === 'medium', 'text-red-500': assignment.difficulty === 'hard' }">
+          {{ assignment.difficulty }}
+        </td>
+        <td class="border px-4 py-2">
+          <button (click)="onSubmit(assignment.assignment_id)" class="bg-blue-500 text-white rounded px-2 py-1">
+            Submit
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
+

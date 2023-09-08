@@ -1,24 +1,31 @@
-<div class="bg-gray-200 min-h-screen flex items-center justify-center">
-    <div class="bg-white p-8 rounded shadow-md w-96">
-      <h2 class="text-2xl font-semibold mb-4">Login</h2>
-      <form>
-        <div class="mb-4">
-          <label for="role" class="block font-semibold">Role:</label>
-          <select id="role" class="border rounded w-full p-2">
-            <option value="student">Student</option>
-            <option value="instructor">Instructor</option>
-          </select>
-        </div>
-        <div class="mb-4">
-          <label for="email" class="block font-semibold">Email:</label>
-          <input type="email" id="email" class="border rounded w-full p-2" />
-        </div>
-        <div class="mb-4">
-          <label for="password" class="block font-semibold">Password:</label>
-          <input type="password" id="password" class="border rounded w-full p-2" />
-        </div>
-        <button type="submit" class="bg-blue-500 text-white rounded px-4 py-2">Login</button>
-      </form>
-    </div>
+<nav class="bg-blue-500 p-4">
+  <div class="container mx-auto flex justify-between items-center">
+    <h1 (click)="homeClick()" class="text-white text-2xl font-semibold">WebEdTech</h1>
+    <ul class="flex space-x-4">
+      <li><a routerLink="/register" class="text-white hover:underline">Register</a></li>
+    </ul>
   </div>
-  
+</nav>
+<div class="bg-gray-200 min-h-screen flex items-center justify-center">
+  <div class="bg-white p-8 rounded shadow-md w-96">
+    <h2 class="text-2xl font-semibold mb-4">Login</h2>
+    <form (ngSubmit)="login()">
+      <div class="mb-4">
+        <label for="role" class="block font-semibold">Role:</label>
+        <select id="role" class="border rounded w-full p-2" [(ngModel)]="role" name="role">
+          <option value="student">Student</option>
+          <option value="instructor">Instructor</option>
+        </select>
+      </div>
+      <div class="mb-4">
+        <label for="email" class="block font-semibold">Email:</label>
+        <input type="email" id="email" class="border rounded w-full p-2" [(ngModel)]="email" name="email" />
+      </div>
+      <div class="mb-4">
+        <label for="password" class="block font-semibold">Password:</label>
+        <input type="password" id="password" class="border rounded w-full p-2" [(ngModel)]="password" name="password" />
+      </div>
+      <button type="submit" class="bg-blue-500 text-white rounded px-4 py-2">Login</button>
+    </form>
+  </div>
+</div>

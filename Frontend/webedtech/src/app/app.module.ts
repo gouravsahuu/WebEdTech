@@ -9,6 +9,12 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { StudentDashboardComponent } from './student-dashboard/student-dashboard.component';
 import { InstructorDashboardComponent } from './instructor-dashboard/instructor-dashboard.component';
+import { CreateAssignmentComponent } from './create-assignment/create-assignment.component';
+import { FormsModule } from '@angular/forms';
+import { AssignmentSubmissionComponent } from './assignment-submission/assignment-submission.component';
+import { EditAssignmentComponent } from './edit-assignment/edit-assignment.component';
+import { EditInstructorProfileComponent } from './edit-instructor-profile/edit-instructor-profile.component';
+import { EditStudentProfileComponent } from './edit-student-profile/edit-student-profile.component';
 
 
 @NgModule({
@@ -18,13 +24,19 @@ import { InstructorDashboardComponent } from './instructor-dashboard/instructor-
     LoginComponent,
     RegisterComponent,
     StudentDashboardComponent,
-    InstructorDashboardComponent
+    InstructorDashboardComponent,
+    CreateAssignmentComponent,
+    AssignmentSubmissionComponent,
+    EditAssignmentComponent,
+    EditInstructorProfileComponent,
+    EditStudentProfileComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     RouterModule.forRoot([]),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

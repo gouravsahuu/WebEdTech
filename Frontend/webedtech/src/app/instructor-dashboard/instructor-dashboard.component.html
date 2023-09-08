@@ -1,12 +1,42 @@
-<div class="container mx-auto mt-8">
-    <h2 class="text-2xl font-semibold">Instructor Dashboard</h2>
-    <p>Welcome, {{ instructorName }} (Instructor ID: {{ instructorId }})</p>
-    <h3 class="text-xl mt-4">Created Assignments:</h3>
-    <ul>
-      <li *ngFor="let assignment of assignments">
-        {{ assignment.title }} (Deadline: {{ assignment.deadline }})
-      </li>
+<nav class="bg-blue-500 p-4">
+  <div class="container mx-auto flex justify-between items-center">
+    <h1 (click)="homeClick()" class="text-white text-2xl font-semibold">WebEdTech</h1>
+    <ul class="flex space-x-4">
+      <li><a routerLink="/" class="text-white hover:underline">Logout</a></li>
     </ul>
-    <button routerLink="/create-assignment" class="bg-blue-500 text-white rounded px-4 py-2 mt-4">Create Assignment</button>
   </div>
+</nav>
+<div class="container mx-auto mt-8">
+  <h2 class="text-2xl font-semibold">Instructor Dashboard</h2>
+  <div id="info">
+    <p>Welcome, {{ instructorName }} (Instructor ID: {{ instructorId }})</p>
+    <h3 class="btn" routerLink="/create-assignment">Create Assignment</h3>
+    <h3 class="btn" (click)="editProfile(instructorId)" >Edit Profile</h3>
+  </div>
+  <h3 class="text-xl mt-4">Created Assignments:</h3>
+  <table class="table-auto mt-4">
+    <thead>
+      <tr>
+        <th class="px-4 py-2">ID</th>
+        <th class="px-4 py-2">Title</th>
+        <th class="px-4 py-2">Deadline</th>
+        <th class="px-4 py-2">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let assignment of assignments">
+        <td class="border px-4 py-2">{{ assignment.assignment_id }}</td>
+        <td class="border px-4 py-2">{{ assignment.title }}</td>
+        <td class="border px-4 py-2">{{ assignment.deadline }}</td>
+        <td class="border px-4 py-2">
+          <button (click)="editAssignment(assignment.assignment_id)" class="bg-blue-500 text-white rounded px-2 py-1">
+            Edit
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
   

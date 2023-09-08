@@ -1,0 +1,35 @@
+<nav class="bg-blue-500 p-4">
+  <div class="container mx-auto flex justify-between items-center">
+    <h1 (click)="homeClick()" class="text-white text-2xl font-semibold">WebEdTech</h1>
+    <ul class="flex space-x-4">
+      <li><a routerLink="/studentDashboard" class="text-white hover:underline">Student Dashboard</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <h2 class="text-2xl font-semibold mb-4">Assignment Details</h2>
+  <div *ngIf="assignmentDetails">
+    <p><strong>Title:</strong> {{ assignmentDetails.title }}</p>
+    <p><strong>Deadline:</strong> {{ assignmentDetails.deadline | date }}</p>
+    <p><strong>Description:</strong> {{ assignmentDetails.description }}</p>
+    <p><strong>Category:</strong> {{ assignmentDetails.category }}</p>
+    <p><strong>Difficulty:</strong> {{ assignmentDetails.difficulty }}</p>
+    <p><strong>Status:</strong> {{ assignmentDetails.status }}</p>
+  </div>
+  <div *ngIf="!assignmentDetails">
+    <p>Loading assignment details...</p>
+  </div>
+</div>
+
+<div class="container">
+    <h2 class="text-2xl font-semibold mb-4">Assignment Submission</h2>
+    <form (submit)="submitAssignment()">
+      <div class="mb-4">
+        <label for="assignmentURL" class="block font-semibold">Assignment URL:</label>
+        <input  type="text" id="assignmentURL" #assignmentURL class="border rounded w-full p-2" placeholder="Enter URL" required>
+      </div>
+      <button type="submit" class="bg-blue-500 text-white rounded px-4 py-2">Submit Assignment</button>
+    </form>
+  </div>
+  
