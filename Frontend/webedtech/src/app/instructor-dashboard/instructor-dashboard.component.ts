@@ -33,6 +33,10 @@ export class InstructorDashboardComponent implements OnInit {
   }
 
   homeClick() {
+    this.router.navigate(['/']);
+  }
+
+  clearCredentials() {
     localStorage.clear();
     this.router.navigate(['/']);
   }
